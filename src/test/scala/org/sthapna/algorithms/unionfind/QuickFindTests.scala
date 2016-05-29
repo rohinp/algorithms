@@ -2,7 +2,7 @@ package org.sthapna.algorithms.unionfind
 
 import org.junit.Test
 import org.scalatest.Matchers._
-import org.sthapna.algorithms.unionFind.QuickFind
+import org.sthapna.algorithms.unionfind.QuickFind
 
 class QuickFindTests {
 

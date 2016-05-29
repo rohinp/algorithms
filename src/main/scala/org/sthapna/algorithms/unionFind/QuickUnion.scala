@@ -1,3 +1,3 @@
-package org.sthapna.algorithms.unionFind
+package org.sthapna.algorithms.unionfind
 
 trait QuickUnion

@@ -1,6 +1,6 @@
-package org.sthapna.algorithms.unionFind
+package org.sthapna.algorithms.unionfind
 
-import org.sthapna.algorithms.unionFind.datastructures.IndexedList
+import org.sthapna.algorithms.unionfind.datastructures.IndexedList
 
 trait QuickFind {
   val indexedList: IndexedList
