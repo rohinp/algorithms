@@ -1,4 +1,4 @@
-package org.sthapna.algorithms.datastructures
+package org.sthapna.algorithms.unionFind.datastructures
 
 import org.junit.Test
 import org.scalatest.Matchers._

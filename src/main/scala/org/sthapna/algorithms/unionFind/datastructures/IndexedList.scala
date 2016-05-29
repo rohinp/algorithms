@@ -1,4 +1,4 @@
-package org.sthapna.algorithms.datastructures
+package org.sthapna.algorithms.unionFind.datastructures
 
 trait IndexedList {
   def allKeysWithSameValueAs(index: Int):List[Int]
