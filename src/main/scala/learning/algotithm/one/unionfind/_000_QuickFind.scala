@@ -5,7 +5,7 @@ import cats.implicits._
 import cats.data.State
 import learning.algotithm.one.input.FileInput._
 import learning.algotithm.one.Main
-object UF_v1 extends Main {
+object _000_QuickFind extends Main {
 
   /*
   * This is a very naive implementation of quick-find without thinking the complexity of the algorithm

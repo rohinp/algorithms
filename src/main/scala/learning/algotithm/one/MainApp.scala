@@ -1,11 +1,11 @@
 package learning.algotithm.one
 
-import learning.algotithm.one.unionfind.{UF_v1, UF_v2}
+import learning.algotithm.one.unionfind.{_000_QuickFind, _001_QuickFind}
 
 trait Main {
   def execute():Unit
 }
 object MainApp extends App {
-  val programToRun:Main = UF_v2
+  val programToRun:Main = _001_QuickFind
   programToRun.execute()
 }
