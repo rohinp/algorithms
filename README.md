@@ -1,9 +1,8 @@
 #Algorithms
 
-This is a WIP.
-
-Its basically solution for most of the algorithms which are covered in Coursera Algorithm(I,II) tutorial
+It's basically solution for most of the algorithms which are covered in Coursera Algorithm(I,II) tutorial
 Language used for solving the algorithms is Scala.
+[Link to the course](https://www.coursera.org/learn/algorithms-part1)
 
-## PS.
-I wanted to learn scala, implementing algorithms is the best choice when you want to explore a language :-)
+`Note:` for details on choice of datastructures used in scala is stated in the respective implementation 
+
