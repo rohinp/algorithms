@@ -15,6 +15,9 @@ scalacOptions ++= Seq(
   //"-Ypartial-unification" //by default in scala 2.13
 )
 
-libraryDependencies += "org.typelevel" %% "cats-core" % "2.1.1"
+libraryDependencies ++= Seq(
+  "org.typelevel" %% "cats-core" % "2.1.1",
+  "org.scalatest" %% "scalatest-wordspec" % "3.2.0" % Test
+)
 
 addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.11.0" cross CrossVersion.full)
