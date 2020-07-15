@@ -14,4 +14,22 @@ TODO:
 1. Refactor file input operation to be generic, can be used by other algorithms
 1. Refactor Main execution, to give a cmd line option to choose which algorithm to execute
     1. Display input, output and analysis.
+    
+How to:
+```shell script
+> algorithms git:(master) sbt
+sbt:algorithms> run
+[info] Running learning.algotithm.one.MainApp 
+
+Please select algorithm from the list below to execute and observe the sequence of operations which take place
+
+0. Exit
+1. Quick Find
+2. Quick Union
+3. Weighted Quick Union
+
+example: 1
+```
+
+
 
