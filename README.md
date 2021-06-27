@@ -1,35 +1,17 @@
-#Algorithms
+#Algorithms: Learn by example.
 
-It's basically solution for most of the algorithms which are covered in Coursera Algorithm(I,II) tutorial
-Language used for solving the algorithms is Scala.
-[Link to the course](https://www.coursera.org/learn/algorithms-part1)
+> The project is a playgroud to tryout different algorithms in FP way.
 
-`Note:` 
-1. For details on choice of datastructures used in scala is stated in the respective implementation
-2. Most of the datastructures used are wrapped in state monad for composition of mutating operations. 
+> The repo can also work as a collective source for learning how to solve dynamic, graph, etc algorithms in FP.
+
+> The examples and explanations are taken from lot of different tutorials, blogs and obviously expirience. The references are given below.
 
 
-TODO:
-1. update read me with list of algorithms and file locations in project
-1. Refactor file input operation to be generic, can be used by other algorithms
-1. Refactor Main execution, to give a cmd line option to choose which algorithm to execute
-    1. Display input, output and analysis.
-    
-How to:
-```shell script
-> algorithms git:(master) sbt
-sbt:algorithms> run
-[info] Running learning.algotithm.one.MainApp 
+## Video tutorials refered:
+1. https://www.youtube.com/c/Reducible
+2. https://www.youtube.com/channel/UCOJtQcnBnIy4LERo6vkrItg
 
-Please select algorithm from the list below to execute and observe the sequence of operations which take place
-
-0. Exit
-1. Quick Find
-2. Quick Union
-3. Weighted Quick Union
-
-example: 1
-```
-
+## Books
+1. CRACKING-the-CODING INTERVIEW
 
 

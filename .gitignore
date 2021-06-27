@@ -3,3 +3,8 @@
 .metals
 project
 target
+.DS_Store
+.bsp
+.vscode
+target
+project/target
