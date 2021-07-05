@@ -112,12 +112,30 @@ object Recursions:
    * ##1
    * [] = [[]]
    * [a] = [[a]]
-   * 
+   *
+   * In a step by step approach 
+   *  
    * ##2
    * [] = [[]]
    * [a] = [[a]]
    * [b] = [[b]]
    * [a,b] = [[a],[b],[a,b]]
+    def combination[A](list:List[A]):List[List[A]] =
+      list match 
+        case Nil => List(List())
+        case x::Nil => List(List(x))
+        case x::xs => 
+          combination(List(x)) ++ combination(xs) ++ combination(xs).map(l => x :: l)
+
+  combination([a,b,c])
+
+  combination([a]) ++ combination([b,c]) ++ combination([b,c]).map(l => a :: l)
+  [[a]] ++ combination([b]) ++ combination([c]) ++ combination([c]).map(l => b :: l) ++ (combination([b]) ++ combination([c]) ++ combination([c]).map(l => b :: l)).map(l => x :: l)
+  [[a]] ++ [[b]] ++ [[c]] ++ [[b,c]] ++ ([[b]] ++ [[c]] ++ [[b,c]]).map(l => a :: l)
+  [[a]] ++ [[b]] ++ [[c]] ++ [[b,c]] ++ [[a,b]] ++ [[a,c]] ++ [[a,b,c]]
+  [[a],[b],[c],[b,c],[a,b],[a,c],[a,b,c]]
+
+   * 
    * 
    * ##3
    * [] = [[]]
@@ -138,13 +156,16 @@ object Recursions:
    * i.e. combination(xs).map(e => x :: e)
    * 
    * we can also visualise the problem in a tree and come up with a similar conclusion.
+  
    * **/
+
+
   def combination[A](list:List[A]):List[List[A]] =
     list match 
       case Nil => List(List())
       case x::Nil => List(List(x))
       case x::xs => 
-        combination(List(x)) ++ combination(xs) ++ combination(xs).map(e => x :: e)
+        combination(List(x)) ++ combination(xs) ++ combination(xs).map(e => x :: e)          
 
 end Recursions
   
