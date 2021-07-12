@@ -110,14 +110,68 @@ For more clarity if you go through the tree in reverse order by concatinating th
                
   */
   //in our case jumps is hardcoded to List(1,2,3)
-  val jumps = List(1,2,3)
   def loop(num:Int):List[List[Int]] = 
     num match
       case 0 => List(List())
       case n if n < 0 => List()
       case n => for {
-        j <- jumps
+        j <- List(1,2,3)
         r <- loop(n - j)
       } yield j :: r
 
-//Note: This is not a complete solution but enough part of the solution that can be used to reach the final result.
+  /*
+    Ok so the solution does not gives correct combinations as it deals [1,2] and [2,1] as two different answers
+    What we need is a simple filter to get rid of the duplicates, plus the complexity is not so good.
+    ---------
+    |x |y   |
+    ---------
+    |2 |6   |
+    ---------
+    |3 |12  |
+    ---------
+    |4 |24  |
+    ---------
+    |5 |45  |
+    ---------
+    |6 |84  |
+    ---------
+    |7 |156 |
+    ---------
+    |8 |288 |
+    ---------
+    |9 |531 |
+    ---------
+    |10|978 |
+    ---------
+    from the sample input and number of steps to get the results are exponential. O(3^(n/2 + 1.5))
+  */
+
+  //n(stairs) -> List(List(jumps))
+  val memo = scala.collection.mutable.Map(0 -> List(List.empty[Int]))
+  def loop_mem(num:Int):List[List[Int]] =    
+    num match
+      case n if memo.contains(n) => memo(n)
+      case n if n < 0 => List()
+      case n => 
+        val r = List(1,2,3).flatMap(j => loop_mem(n - j).map(l => (j :: l))).map(_.sorted).distinct
+        memo.put(n, r)
+        r
+
+  /* 
+      At this moment the complexity is O(3n), though not considerered the computation time for sort and distinct
+      But we can improvise by making the inner list to set and then we dont need to do distinct.
+  */
+
+  //completing the solution by counting the number of combinations.
+  def possibleCombinations(numOfStairs:Int):Int =
+    val memo = scala.collection.mutable.Map(0 -> List(List.empty[Int]))
+    def loop(num:Int):List[List[Int]] =    
+      num match
+        case n if memo.contains(n) => memo(n)
+        case n if n < 0 => List()
+        case n => 
+          val r = List(1,2,3).flatMap(j => loop(n - j).map(l => (j :: l))).map(_.sorted).distinct
+          memo.put(n, r)
+          r
+    loop(numOfStairs).length    
+      
