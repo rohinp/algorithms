@@ -12,6 +12,7 @@
 2. https://www.youtube.com/channel/UCOJtQcnBnIy4LERo6vkrItg
 
 ## Books
+1. Algorithm design with Haskell
 1. CRACKING-the-CODING INTERVIEW
-
+2. Guide to Competitive Programming
 
