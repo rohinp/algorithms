@@ -158,7 +158,7 @@ For more clarity if you go through the tree in reverse order by concatinating th
         r
 
   /* 
-      At this moment the complexity is O(3n), though not considerered the computation time for sort and distinct
+      At this moment the complexity is O(3*n), though not considerered the computation time for sort and distinct
       But we can improvise by making the inner list to set and then we dont need to do distinct.
   */
 
