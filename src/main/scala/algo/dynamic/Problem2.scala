@@ -95,7 +95,7 @@ This is a less verbose solution but the above solution is the one which gave the
 The idea is convert the multiple pattern match cases into a simple forexpression.
 Let the flatMap and map manage the invalid senarios i.e. taking care of all wiring.
 
-The below solution are makes sure that if multiple paths available it will give the result respectively.
+The below solution makes sure that if multiple paths available it will give the result respectively.
 */
 def routes2(grid:Vector[Vector[Boolean]]):List[List[Point]] =
     if grid.length == 0 || grid(0).length == 0 then List() else 

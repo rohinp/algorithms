@@ -4,5 +4,6 @@ lazy val root = project
     name := "algorithms",
     description := "Algorithms in scala3",
     version := "0.1.0",
-    scalaVersion := "3.0.1"
+    scalaVersion := "3.0.1",
+    bloopExportJarClassifiers in Global := Some(Set("sources"))
   )
