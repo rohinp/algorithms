@@ -7,6 +7,8 @@ case class Node[E] private (val data:E, var next:Node[E] | Null):
     this.next = n
     this
 
+  def head:E = data
+  
   override def toString:String = 
     def loop(in:Node[E], acc:String):String =     
         in match
@@ -80,7 +82,11 @@ object Node:
           
       loop(root, null)
 
+  def inserAtHead[T](data:T):Node[T] => Node[T] =
+    Node(data, _)
 
+  def removeHead[T]:Node[T] => Either[String,Node[T]] =
+      deleteAt(1)
 
 end Node
 
