@@ -20,6 +20,24 @@ case class BSTNode[T:Ordering] private (
     this.data = d
     this
 
+  def isBST:Boolean = 
+    val ord = summon[Ordering[T]]
+    def traverse(current:BSTNode[T]):Boolean =
+      current match
+        case BSTNode(null, data, null) => true
+        case BSTNode(null, data, right) => 
+          if ord.lteq(data, right.data) then traverse(right) else false
+        case BSTNode(left, data, null) => 
+          if ord.lteq(left.data, data) then traverse(left) else false
+        case BSTNode(left, data, right) =>
+          if ord.lteq(left.data, data) && ord.lteq(data, right.data) 
+            then traverse(left) && traverse(right)
+            else false
+    traverse(this)
+
+          
+
+
 object BSTNode:
   def apply[T:Ordering](data:T):BSTNode[T] =
     BSTNode(null, data, null)
@@ -156,12 +174,53 @@ object BSTNode:
           current.update(f(data).tap(println))
     traverse(root)
 
-  //Pending functions:
-      //chek if the BT is a BST
-      //delete a node from bst
-          //case 1: No child
-          //case 2: one child
-          //case 3: 2 children (find min in right or max in left)
+  //delete a node from bst
+    //case 1: No child
+    //case 2: one child
+    //case 3: 2 children (find min in right or max in left)
+  def delete[T:Ordering](data:T)(root:BSTNode[T]): BSTNode[T] =
+    val ord = summon[Ordering[T]]
+
+    def deleteLeaf(leaf:BSTNode[T], parent:BSTNode[T]):BSTNode[T] =
+      parent match
+        case BSTNode(l, _, _) if ord.equiv(l.data, leaf.data) => parent.leftNode(null)
+        case BSTNode(_, _, r) if ord.equiv(r.data, leaf.data) => parent.rightNode(null)
+        case _ => parent
+      root
+
+    def deleteWithSingleBranch(deleteNode:BSTNode[T], parent:BSTNode[T], next:BSTNode[T], dataToDelete:T):BSTNode[T] = 
+      parent match
+        case BSTNode(l, _, _) if ord.equiv(deleteNode.data, dataToDelete) && ord.equiv(l.data, deleteNode.data) => 
+          deleteNode.leftNode(null).rightNode(null)
+          parent.leftNode(next)
+          root
+        case BSTNode(_, _, r) if ord.equiv(deleteNode.data, dataToDelete) && ord.equiv(r.data, deleteNode.data) => 
+          deleteNode.leftNode(null).rightNode(null)
+          parent.rightNode(next)
+          root
+        case _ => traverse(next, deleteNode, dataToDelete)
+        
+
+    def traverse(current:BSTNode[T], parent:BSTNode[T], dataToDelete:T):BSTNode[T] = 
+      current match
+        case BSTNode(null, data, null) =>
+          deleteLeaf(current, parent)
+        case BSTNode(left, data, null) => 
+          deleteWithSingleBranch(current, parent, left, dataToDelete)
+        case BSTNode(null, data, right) => 
+          deleteWithSingleBranch(current, parent, right, dataToDelete)
+        case BSTNode(left, data, right) if ord.equiv(data, dataToDelete) =>
+          val minOfRightSubTree = min(right)
+          current.update(minOfRightSubTree)
+          traverse(right,current, minOfRightSubTree)
+        case BSTNode(left, data, right) if ord.lteq(data, dataToDelete) =>
+          traverse(right, current, dataToDelete)
+        case BSTNode(left, data, right) =>
+          traverse(left, current, dataToDelete)
+
+    traverse(root, root, data)
+
+    //Pending functions:
       //find succesor, inorder traversal of a BST.
 end BSTNode
 
@@ -178,6 +237,7 @@ end BSTNode
     .pipe(insert(25))
     .pipe(insert(8))
     .pipe(insert(12))
+    .pipe(insert(9))
     .tap(println)
     .tap(bst => println(s" exists 8 = ${exists(8)(bst)}"))
     .tap(bst => println(s" exists 18  = ${exists(18)(bst)}"))
@@ -192,3 +252,9 @@ end BSTNode
     .tap(bst => println(inorder_traverse(bst)(identity)))
     .tap(_ => println("-"*50))
     .tap(bst => println(postorder_traverse(bst)(identity)))
+    .tap(bst => println(s" is a BST = ${bst.isBST}"))
+    .pipe(delete(20))
+    .tap(bst => println(s"After Delete = $bst"))
+    .pipe(insert(20))
+    .pipe(delete(10))
+    .tap(bst => println(s"After Delete = $bst"))
