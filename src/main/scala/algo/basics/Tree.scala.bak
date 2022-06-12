@@ -220,8 +220,18 @@ object BSTNode:
 
     traverse(root, root, data)
 
-    //Pending functions:
-      //find succesor, inorder traversal of a BST.
+  def inorderSuccessorOf[T:Ordering](element:T)(root:BSTNode[T]):T =
+    def succesor(current:BSTNode[T]):BSTNode[T] =
+      current match 
+        case BSTNode(null, data, null) => ???
+        case BSTNode(null, data, right) => ???
+        case BSTNode(left, data, null) => ???
+        case BSTNode(left, data, right) => ???
+
+
+
+    succesor(root).data
+
 end BSTNode
 
 @main def bstMain =
